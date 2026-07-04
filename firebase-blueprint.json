@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "MenuItem": {
+      "title": "Menu Item",
+      "description": "Restaurant menu item with pricing and cost",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "cost": { "type": "number", "description": "Investment cost per unit" },
+        "detailedCost": {
+          "type": "object",
+          "properties": {
+            "chicken": { "type": "number" },
+            "maida": { "type": "number" },
+            "oil": { "type": "number" },
+            "labour": { "type": "number" },
+            "electricity": { "type": "number" },
+            "rent": { "type": "number" },
+            "foodBag": { "type": "number" },
+            "butterPaper": { "type": "number" },
+            "iceberg": { "type": "number" }
+          }
+        },
+        "category": { "type": "string" },
+        "ingredients": { "type": "array" }
+      },
+      "required": ["name", "price"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Restaurant order data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "invoiceNo": { "type": "number" },
+        "businessDate": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "customerId": { "type": "string" },
+        "customer": { "type": "object" },
+        "status": { "type": "string", "enum": ["PAID", "UNPAID"] },
+        "paymentMethod": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["TAKEAWAY", "DELIVERY", "DINE-IN"] }
+      },
+      "required": ["id", "invoiceNo", "total", "status", "timestamp"]
+    },
+    "InventoryItem": {
+      "title": "InventoryItem",
+      "description": "Item in inventory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "unit": { "type": "string" },
+        "stock": { "type": "number" },
+        "minStock": { "type": "number" }
+      },
+      "required": ["name", "stock"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Business expense",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "reason": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" }
+      },
+      "required": ["reason", "amount", "timestamp"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Customer profile information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "address": { "type": "string" },
+        "totalOrders": { "type": "number" },
+        "totalSpent": { "type": "number" },
+        "lastOrderDate": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "mobile"]
+    },
+    "Supplier": {
+      "title": "Supplier",
+      "description": "Inventory supplier information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "totalDue": { "type": "number" }
+      },
+      "required": ["name", "mobile"]
+    },
+    "PurchaseOrder": {
+      "title": "PurchaseOrder",
+      "description": "Inventory purchase order",
+      "type": "object",
+      "properties": {
+        "poNumber": { "type": "string" },
+        "supplierId": { "type": "string" },
+        "total": { "type": "number" },
+        "status": { "type": "string" },
+        "paymentStatus": { "type": "string" }
+      },
+      "required": ["poNumber", "supplierId", "total", "status"]
+    }
+  },
+  "firestore": {
+    "menu/{itemId}": {
+      "schema": "MenuItem",
+      "description": "Collection of menu items"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of orders"
+    },
+    "inventory/{itemId}": {
+      "schema": "InventoryItem",
+      "description": "Collection of inventory stock"
+    },
+    "expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Collection of business expenses"
+    },
+    "customers/{customerId}": {
+      "schema": "Customer",
+      "description": "Collection of customer profiles"
+    },
+    "suppliers/{supplierId}": {
+      "schema": "Supplier",
+      "description": "Collection of suppliers"
+    },
+    "purchase_orders/{poId}": {
+      "schema": "PurchaseOrder",
+      "description": "Collection of purchase orders"
+    }
+  }
+}
