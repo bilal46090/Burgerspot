@@ -1,0 +1,10 @@
+{
+  "name": "Burgerspot",
+  "short_name": "Burgerspot",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": []
+}
