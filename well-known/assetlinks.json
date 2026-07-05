@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.burgerspot_eight.twa",
+    "sha256_cert_fingerprints": ["10:3E:B2:5C:7C:DA:69:4C:1B:7C:CD:FD:3B:EB:FC:EA:39:05:73:5F:23:42:3E:12:A8:CB:34:94:D6:9C:39:1D"]
+  }
+}]
